@@ -16,8 +16,8 @@ require_once (plugin_dir_path(__FILE__). 'src/DeveloperContest/autoloader.php');
 $SettingsPage = new SettingsPage;
 $SettingsPage->enableSettingsPage();
 
+$Freelancer = new Freelancer;
+$Freelancer->enableRole();
 
-
-
-
-
+$API = new Api_FetchPostTitleFromIdEvenIfPostIsUnpublished;
+$API->enableApi();
