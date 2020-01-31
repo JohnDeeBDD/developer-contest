@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="273bbd74-84cb-4d0b-98bf-e1b9ab59beef" name="aws" url="http://ec2-52-90-97-71.compute-1.amazonaws.com/">
+        <fileTransfer host="ec2-52-90-97-71.compute-1.amazonaws.com" port="22" privateKey="$USER_HOME$/Desktop/AwsPems/macandcheese.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -10,8 +10,18 @@
  */
 
 namespace DeveloperContest;
+
+
+
 require_once (plugin_dir_path(__FILE__). 'src/DeveloperContest/autoloader.php');
-//die('Developer Contest!');
+
+
+function activatePlugin() {
+    $Freelancer = new Freelancer;
+    $Freelancer->enableRole();
+}
+register_activation_hook( __FILE__, '\DeveloperContest\activatePlugin' );
+
 
 $SettingsPage = new SettingsPage;
 $SettingsPage->enableSettingsPage();
@@ -21,3 +31,7 @@ $Freelancer->enableRole();
 
 $API = new Api_FetchPostTitleFromIdEvenIfPostIsUnpublished;
 $API->enableApi();
+
+$EditorUI = new EditorUI;
+$EditorUI->enableEditorUI();
+
