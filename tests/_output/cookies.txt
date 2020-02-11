@@ -1,0 +1,60 @@
+array(3) {
+  [2]=>
+  object(Facebook\WebDriver\Cookie)#977 (1) {
+    ["cookie":protected]=>
+    array(7) {
+      ["name"]=>
+      string(52) "wordpress_logged_in_c87c8c739570b74ad637e0201911784a"
+      ["value"]=>
+      string(131) "admin%7C1582318441%7CnKQqf8jWdSetBsZQjMasJDVc7IYZIYD4oJuyWxMutaN%7Cba5fb897e28457c102315056b61baeb12c3ba855356c5cac24ec205b8b32aade"
+      ["path"]=>
+      string(1) "/"
+      ["domain"]=>
+      string(41) "ec2-54-173-26-113.compute-1.amazonaws.com"
+      ["expiry"]=>
+      int(1582361641)
+      ["secure"]=>
+      bool(false)
+      ["httpOnly"]=>
+      bool(true)
+    }
+  }
+  [4]=>
+  object(Facebook\WebDriver\Cookie)#974 (1) {
+    ["cookie":protected]=>
+    array(6) {
+      ["name"]=>
+      string(21) "wordpress_test_cookie"
+      ["value"]=>
+      string(15) "WP+Cookie+check"
+      ["path"]=>
+      string(1) "/"
+      ["domain"]=>
+      string(41) "ec2-54-173-26-113.compute-1.amazonaws.com"
+      ["secure"]=>
+      bool(false)
+      ["httpOnly"]=>
+      bool(false)
+    }
+  }
+  [5]=>
+  object(Facebook\WebDriver\Cookie)#973 (1) {
+    ["cookie":protected]=>
+    array(7) {
+      ["name"]=>
+      string(42) "wordpress_c87c8c739570b74ad637e0201911784a"
+      ["value"]=>
+      string(131) "admin%7C1582318441%7CnKQqf8jWdSetBsZQjMasJDVc7IYZIYD4oJuyWxMutaN%7C5b055e7946b484171d3e4a9f31e8b8defd69dfef862c12f06e1373f5a4081a5d"
+      ["path"]=>
+      string(9) "/wp-admin"
+      ["domain"]=>
+      string(41) "ec2-54-173-26-113.compute-1.amazonaws.com"
+      ["expiry"]=>
+      int(1582361641)
+      ["secure"]=>
+      bool(false)
+      ["httpOnly"]=>
+      bool(true)
+    }
+  }
+}

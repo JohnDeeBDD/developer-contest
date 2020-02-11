@@ -13,14 +13,19 @@ class Api_FetchPostTitleFromIdEvenIfPostIsUnpublished{
             'developer-contest/v1',
             'fetch-title',
             array(
-                'methods'               => array('POST', 'GET'),
-                'callback'              => array($this, 'apiCallback'),
-                'permission_callback'   => function(){return true;}
+                'methods'               => array('POST'),
+                'callback'              => array($this, 'fetchTitleApiCallback'),
+                'permission_callback'   => function(){
+                    if(!(current_user_can( 'activate_plugins' ))){
+                        return FALSE;
+                    }
+                    return TRUE;
+                },
             )
         );
     }
 
-    public function apiCallback(){
+    public function fetchTitleApiCallback($request){
         if(!(isset($_REQUEST['postID']))){
             return "Error: No post id";
         }
@@ -43,5 +48,5 @@ class Api_FetchPostTitleFromIdEvenIfPostIsUnpublished{
         //an existing post will have some kind of post status that is a string
         return is_string( get_post_status($postID) );
     }
-
 }
+

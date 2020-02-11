@@ -1,6 +1,6 @@
 <?php
 $I = new AcceptanceTester($scenario);
-$I->wantTo('See that the browser can launch');
+$I->wantTo('Confirm the frontend validation works on admin settings page');
 $I->loginAsAdmin();
 $I->amOnPage("/wp-admin/admin.php?page=developer-contest");
 

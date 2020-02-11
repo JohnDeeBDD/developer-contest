@@ -11,10 +11,9 @@
 
 namespace DeveloperContest;
 
-
+//die("Developer Contest Plugin!");
 
 require_once (plugin_dir_path(__FILE__). 'src/DeveloperContest/autoloader.php');
-
 
 function activatePlugin() {
     $Freelancer = new Freelancer;
@@ -23,15 +22,11 @@ function activatePlugin() {
 register_activation_hook( __FILE__, '\DeveloperContest\activatePlugin' );
 
 
+$AdminRole = new AdminRole;
+$AdminRole->enableAbilityToStartContest();
+
 $SettingsPage = new SettingsPage;
-$SettingsPage->enableSettingsPage();
-
-$Freelancer = new Freelancer;
-$Freelancer->enableRole();
-
-$API = new Api_FetchPostTitleFromIdEvenIfPostIsUnpublished;
-$API->enableApi();
+$SettingsPage->enable();
 
 $EditorUI = new EditorUI;
 $EditorUI->enableEditorUI();
-
