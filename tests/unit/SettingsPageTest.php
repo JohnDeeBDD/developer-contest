@@ -2,10 +2,6 @@
 
 class SettingsPageTest extends \Codeception\TestCase\WPTestCase{
 
-    public static function setUpBeforeClass() : void{
-        require_once('/var/www/html/wp-content/plugins/developer-contest/src/DeveloperContest/autoloader.php');
-    }
-
     /**
      * @test
      * it should be instantiatable

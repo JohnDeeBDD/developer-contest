@@ -5,27 +5,34 @@ namespace DeveloperContest;
 class AdminRole{
 
 
-    public function enableAbilityToStartContest(){
-        $this->listenForStartContestSubmission();
-
-        add_action('rest_api_init', array($this, 'doRegisterRouteStartContest'));
-        add_action('admin_enqueue_scripts', array($this, 'enableAdminJS'));
-
-        $fetchPostTitle = new Api_FetchPostTitleFromIdEvenIfPostIsUnpublished;
-        $fetchPostTitle->enableApi();
+    public function enable(){
+        $user = wp_get_current_user();
+        if ( in_array( 'administrator', (array) $user->roles ) ) {
+            add_action("init", [$this, "listenForStartContestSubmission"]);
+            add_action('rest_api_init', array($this, 'doRegisterRouteStartContest'));
+            $fetchPostTitle = new Api_FetchPostTitleFromIdEvenIfPostIsUnpublished;
+            $fetchPostTitle->enableApi();
+        }
     }
 
     public function listenForStartContestSubmission(){
-        if(isset($_REQUEST['page'])){
-            if($_REQUEST['page'] == "developer-contest"){
-                if(isset($_REQUEST['action'])){
-                    if($_REQUEST['action'] == "designate-post-as-contest"){
-                        if(isset($_REQUEST['wpnonce'])){
+       // die("listenForStartContestSubmission");
+        if(isset($_REQUEST['action'])){
 
-                        }else{
-                            die("something is very wrong. No nonce.");
-                        }
+            if($_REQUEST['action'] == "developer-contest-designate-post-as-contest"){
+                //die("listenForStartContestSubmission action set");
+                if (isset($_REQUEST['contestPostID'])){
+                    $postID = $_REQUEST['contestPostID'];
+                    if(!($this->validateRequestDesignatePostAsContest($postID))){
+                        die("SOMETHING IS WRONG! PostID did not validate.");
+                    };
+                    if(!(isset($_REQUEST['developer-contest-designate-post-as-contest-nonce']))){
+                        die("SOMETHING IS WRONG! NONCE NOT FOUND.");
                     }
+                    if(!(\wp_verify_nonce( $_REQUEST['developer-contest-designate-post-as-contest-nonce'], 'developer-contest-designate-post-as-contest-nonce' ))){
+                        die("SOMETHING IS WRONG! INVALID NONCE!");
+                    }
+                    $this->designatePostAsContest($_REQUEST['contestPostID']);
                 }
             }
         }
@@ -40,20 +47,8 @@ class AdminRole{
     */
     }
 
-    public function enableAdminJS() {
-        wp_register_script(
-            'developer-contest-admin-settings-page',
-            plugin_dir_url(__FILE__) . 'settings-page.js', // here is the JS file
-            ['jquery', 'wp-api'],
-            '1.0',
-            true
-        );
-        wp_localize_script( 'developer-contest-admin-settings-page', 'DeveloperContest', []);
-        wp_enqueue_script('developer-contest-admin-settings-page');
-    }
-        public function designatePostAsContest($postID){
+    public function designatePostAsContest($postID){
             update_post_meta( $postID, "developer-contest", "active");
-            echo "success";
         }
 
     public function doRegisterRouteStartContest(){
@@ -90,5 +85,13 @@ class AdminRole{
             }
         }
         return FALSE;
+    }
+
+    public function returnActionButtons($postID){
+        if (!(current_user_can('manage_options'))) {
+            return;
+        }
+
+        return ("Details Fund Start End Remove");
     }
 }

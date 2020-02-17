@@ -16,17 +16,27 @@ namespace DeveloperContest;
 require_once (plugin_dir_path(__FILE__). 'src/DeveloperContest/autoloader.php');
 
 function activatePlugin() {
-    $Freelancer = new Freelancer;
-    $Freelancer->enableRole();
+    $Freelancer = new FreelancerRole;
+    $Freelancer->enable();
 }
 register_activation_hook( __FILE__, '\DeveloperContest\activatePlugin' );
 
 
 $AdminRole = new AdminRole;
-$AdminRole->enableAbilityToStartContest();
+add_action("init", [$AdminRole, "enable"]);
 
 $SettingsPage = new SettingsPage;
 $SettingsPage->enable();
 
 $EditorUI = new EditorUI;
 $EditorUI->enableEditorUI();
+
+/*
+ * status
+ * active
+ * done
+ * endTime
+ * startTime
+ * prize
+ *
+ */

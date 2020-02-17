@@ -6,17 +6,17 @@ class SettingsPage{
 
     public function enable(){
         add_action( 'admin_menu', array($this, 'addMenuPage' ));
-       //add_action('init', array($this, 'listenForAdminOrEditorSubmission'));
-       // add_action('init', [$this, 'listenForFreelancerSubmission']);
+        if(isset($_GET['page'])){
+            if($_GET['page'] == "developer-contest"){
+                add_action('admin_enqueue_scripts', array($this, 'enableAdminJS'));
+            }
+        }
     }
 
     public function addMenuPage() {
         $user = wp_get_current_user();
-        if ( in_array( 'administrator', (array) $user->roles ) ) {
-            add_menu_page( "developer-contest", "admnDesign Contest", "activate_plugins","developer-contest", array($this, "renderDeveloperContestSettingsPage"));
-        }
-        if ( in_array( 'freelancer', (array) $user->roles ) ) {
-            add_menu_page( "developer-contest", "freeDesign Contest", "edit_posts","developer-contest", array($this, "renderDeveloperContestFreelancerSettingsPage"));
+        if ( (in_array( 'administrator', (array) $user->roles ) ) or (in_array( 'freelancer', (array) $user->roles )) ) {
+            add_menu_page( "developer-contest", "Design Contest", "edit_posts","developer-contest", array($this, "renderDeveloperContestAdminSettingsPage"));
         }
     }
 
@@ -124,7 +124,8 @@ OUTPUT;
 OUTPUT;
         echo $output;
     }
-    public function renderDeveloperContestSettingsPage(){
+
+    public function renderDeveloperContestAdminSettingsPage(){
        // $nonceField = wp_create_nonce( 'useDeveloperContestSettingsPage');
         //$frontEndJQuery = $this->returnJquery();
         $contestRows = $this->listContestRows();
@@ -155,6 +156,18 @@ OUTPUT;
         $YouMustEnterAnInteger = __("You must enter an integer.", "developer-contest");
 
     return;
+    }
+
+    public function enableAdminJS() {
+        wp_register_script(
+            'developer-contest-admin-settings-page',
+            plugin_dir_url(__FILE__) . 'settings-page.js', // here is the JS file
+            ['jquery', 'wp-api'],
+            '1.0',
+            true
+        );
+        wp_localize_script( 'developer-contest-admin-settings-page', 'DeveloperContest', []);
+        wp_enqueue_script('developer-contest-admin-settings-page');
     }
 
 }

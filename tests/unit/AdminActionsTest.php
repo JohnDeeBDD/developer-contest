@@ -2,16 +2,12 @@
 
 class AdminActionsTest extends \Codeception\TestCase\WPTestCase{
 
-    public static function setUpBeforeClass(): void{
-        require_once('/var/www/html/wp-content/plugins/developer-contest/src/DeveloperContest/autoloader.php');
-    }
-
     /**
      * @test
      * it should be instantiatable
      */
     public function it_should_be_instantiatable(){
-        $AdminActionse = new \DeveloperContest\AdminRole();
+        $AdminActions = new \DeveloperContest\AdminRole();
     }
 
     /**
@@ -36,4 +32,9 @@ class AdminActionsTest extends \Codeception\TestCase\WPTestCase{
 
         $this->assertEquals("active", "$returnedMeta", "the returned meta is :  $returnedMeta");
     }
+
+    /**
+     * @test
+     * it should designate a contest as "open"
+     */
 }

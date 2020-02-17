@@ -27,4 +27,6 @@ function autoload($className){
     }
 }
 $autoloadFunctionName = __NAMESPACE__. "\autoload";
-spl_autoload_register($autoloadFunctionName);
+if(!(class_exists ( "autoload" ))){
+    spl_autoload_register($autoloadFunctionName);
+}

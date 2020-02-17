@@ -2,7 +2,7 @@
 
 namespace DeveloperContest;
 
-class Freelancer{
+class FreelancerRole{
 
     public function enableRole(){
         remove_role('freelancer');
@@ -59,4 +59,14 @@ class Freelancer{
 
 
     }
+
+    public function returnFreelancerActionButtons($postID){
+
+    }
+
+    public function isPostAContest($postID){}
+    public function startNewEntry($postID){}
+    public function getSettingsPageContestLink($postID){}
+    public function openEntry($postID){}
+
 }

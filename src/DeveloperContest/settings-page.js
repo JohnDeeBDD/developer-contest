@@ -4,7 +4,18 @@ jQuery(document).ready(function() {
         DeveloperContest.validatePostIdAfterKeypress();
     });
     DeveloperContest.ajaxSiteWhenIdNumberInInputBoxIsStableFor1Second();
+
+    jQuery("#developer-contest-form").on('submit', function(e){
+        //e.preventDefault();
+    });
+    jQuery("#developer-contest-postid-submit-button").click(function(){
+        alert('click');
+        jQuery('#developer-contest-form').attr('action', '/wp-admin/admin.php?page=developer-contest&action=developer-contest-designate-post-as-contest');
+        jQuery("#developer-contest-form").submit(); // Submit
+    });
 });
+
+
 
 var originalColor = jQuery("#developer-contest-p-enter-a-post-or-page-id").css("color");
 
