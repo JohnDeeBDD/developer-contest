@@ -4,19 +4,26 @@ namespace DeveloperContest;
 
 class AdminRole{
 
+    public function __construct(){
+        $Action_RemovePostAsContest = new Action_RemovePostAsContest;
+        $Action_RemovePostAsContest->enable();
+    }
 
     public function enable(){
         $user = wp_get_current_user();
         if ( in_array( 'administrator', (array) $user->roles ) ) {
-            add_action("init", [$this, "listenForStartContestSubmission"]);
+           // die("11");
+          //  $this->listenForStartContestSubmission();
             add_action('rest_api_init', array($this, 'doRegisterRouteStartContest'));
             $fetchPostTitle = new Api_FetchPostTitleFromIdEvenIfPostIsUnpublished;
             $fetchPostTitle->enableApi();
+
         }
+
     }
 
     public function listenForStartContestSubmission(){
-       // die("listenForStartContestSubmission");
+        //die("listenForStartContestSubmission");
         if(isset($_REQUEST['action'])){
 
             if($_REQUEST['action'] == "developer-contest-designate-post-as-contest"){
@@ -91,7 +98,34 @@ class AdminRole{
         if (!(current_user_can('manage_options'))) {
             return;
         }
+        $removeButton = new Action_RemovePostAsContest;
+        $html = $removeButton->getActionButtonUiHtml($postID);
+        return ("Details Fund Start End $html");
+    }
 
-        return ("Details Fund Start End Remove");
+    public function settingsPageReturnSubmissionsForContest($postID){
+            $userID = get_current_user_id();
+            //die("user: $userID");
+            $args = array(
+               // 'author'    =>  $userID,
+                'meta_query' => array(
+                    array(
+                        'key' => 'developer-contest-entry',
+                        'value' => $postID
+                    )
+                )
+            );
+            $my_secondary_loop = new \WP_Query($args);
+            $output = "";
+            if( $my_secondary_loop->have_posts() ) {
+                while ($my_secondary_loop->have_posts()){
+                    $my_secondary_loop->the_post();
+                    $postID = get_the_ID();
+                    $meta_data = get_post_custom($postID);
+                    $output = $output . "<tr><th></th><td>" . "<a href = '" . "/wp-admin/post.php?post=$postID&action=edit" . "' target = '_blank'>"  . get_the_title() . "</a></tr></td>"; // your custom-post-type post's title
+
+                }
+            }
+           return $output;
     }
 }

@@ -29,6 +29,20 @@ abstract class AbstractAuth{
 
 class SiteAuth extends AbstractAuth
 {
+    public function enableApi(){
+        add_action ('rest_api_init', array($this, 'registerIsDeveloperContestApi'));
+        add_action ('rest_api_init', array($this, 'registerResetAuthApi'));
+        add_action("init", [$this, "listenForManualReset"]);
+    }
+
+    public function listenForManualReset(){
+        if(isset($_GET['developer-contest-site-auth-token-reset'])){
+            $user = wp_get_current_user();
+            if ( in_array( 'administrator', (array) $user->roles ) ) {
+                $this->resetAuth();
+            }
+        }
+    }
 
     public function getSiteAuthToken()
     {
@@ -41,7 +55,7 @@ class SiteAuth extends AbstractAuth
         //todo: is the token EVER used?
     }
 
-ss
+
     public function authenticateApiRequest()
     {
         //the auth token must be passed in the request body as ['developerContest-site-auth-token']
@@ -83,11 +97,55 @@ ss
         $UiText = __("Copy and then paste this code here: <a href = '$serverUrl' target = '_blank'>DeveloperContest.com</a><br />");
         $dbOption = get_option('developerContest-site-auth-token');
         if ($dbOption) {
-            //return "xx";
+
             return ($UiText . $dbOption);
         }
         $dbOption = $this->generateAuthToken();
-       //return "zzz";
         return ($UiText . $dbOption);
+    }
+
+    public function registerIsDeveloperContestApi(){
+        register_rest_route(
+            'developer-contest/v1',
+            'is-developer-contest',
+            array(
+                'methods'               => array('GET','POST'),
+                'callback'              => [$this, 'doRegisterRemoteSite'],
+                'permission_callback'   =>
+                    array(
+                        new \DeveloperContest\SiteAuth(),
+                        'authenticateApiRequest'
+                    )
+            )
+        );
+    }
+    public function doRegisterRemoteSite(){
+        update_option("developer-contest-auth-registration", true);
+        return true;
+    }
+    public function isRemoteSiteRegistered(){
+        if(get_option("developer-contest-auth-registration")){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
+    public function resetAuth(){
+        delete_option("developer-contest-auth-registration" );
+        delete_option( "developerContest-site-auth-token");
+        return "reset";
+    }
+
+    public function registerResetAuthApi(){
+        register_rest_route(
+            'developer-contest/v1',
+            'reset-auth',
+            array(
+                'methods'               => array('GET','POST'),
+                'callback'              => [$this, 'resetAuth'],
+                'permission_callback'   => [$this, 'authenticateApiRequest']
+            )
+        );
     }
 }

@@ -23,4 +23,7 @@ class AcceptanceTester extends \Codeception\Actor
    /**
     * Define custom actions here
     */
+   public function moveToScreenWhereActionIsAvailable($action){
+       $roles = $action->roles;
+   }
 }

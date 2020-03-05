@@ -1,23 +1,46 @@
 jQuery(document).ready(function() {
-    DeveloperContest.SetupStrings();
-    jQuery("#contestPostID").keyup(function() {
+    if (jQuery("#developer-contest-postid-submit-button").length){
+        DeveloperContest.SetupStrings();
+        jQuery("#contestPostID").keyup(function() {
+            DeveloperContest.validatePostIdAfterKeypress();
+        });
+        DeveloperContest.ajaxSiteWhenIdNumberInInputBoxIsStableFor1Second();
+        jQuery("#developer-contest-postid-submit-button").click(function(){
+            jQuery('#developer-contest-form').attr('action', '/wp-admin/admin.php?page=developer-contest&action=developer-contest-designate-post-as-contest');
+            jQuery("#developer-contest-form").submit(); // Submit
+        });
         DeveloperContest.validatePostIdAfterKeypress();
-    });
-    DeveloperContest.ajaxSiteWhenIdNumberInInputBoxIsStableFor1Second();
-
-    jQuery("#developer-contest-form").on('submit', function(e){
-        //e.preventDefault();
-    });
-    jQuery("#developer-contest-postid-submit-button").click(function(){
-        alert('click');
-        jQuery('#developer-contest-form').attr('action', '/wp-admin/admin.php?page=developer-contest&action=developer-contest-designate-post-as-contest');
+    }
+    //DeveloperContest.updateDataOnChanges();
+    //jQuery(".dateTimePickerDateInput").change(function(){
+      //  console.log(jQuery(this).attr('id'));
+        //DeveloperContest.contestDataAjaxUpdate(this);
+   // });
+    jQuery(".developer-contest-action-button").click(function(){
+        var postID = DeveloperContest.returnPostIdOfClickedElement(this);
+        var queryString = '/wp-admin/admin.php?page=developer-contest&action=developer-contest-create-new-contest-entry' + '&contestPostID=' + postID;
+        jQuery('#developer-contest-form').attr('action', queryString);
         jQuery("#developer-contest-form").submit(); // Submit
     });
 });
-
-
+DeveloperContest.returnPostIdOfClickedElement = function(clickedElement){
+    var postID = jQuery(clickedElement).attr('id');
+    //console.log("returnPostIdOfClickedElement" + postID.slice((postID.lastIndexOf("-") + 1)));
+    return (postID.slice((postID.lastIndexOf("-") + 1)));
+}
 
 var originalColor = jQuery("#developer-contest-p-enter-a-post-or-page-id").css("color");
+DeveloperContest.updateDataOnChange = function (){
+    var DeveloperContestArrayOfDataIDs = 123;
+}
+DeveloperContest.contestDataAjaxUpdate = function(inputDate){
+    parseDate = jQuery(inputDate).val();
+    if (Date.parse(parseDate)) {
+        console.log("DeveloperContest.contestDataAjaxUpdate valid!! " + parseDate);
+    } else {
+        console.log("DeveloperContest.contestDataAjaxUpdate NOT valid " + parseDate);
+    }
+}
 
 DeveloperContest.ajaxSiteWhenIdNumberInInputBoxIsStableFor1Second = function(){
     //We dont want to AJAX the site after every keypress, but only after it's been there for a whole second
@@ -73,7 +96,7 @@ DeveloperContest.IsItAValidPostIdEntry = function(){
     //This function checks to see that the entry is a number or blank
     var postID = jQuery("#contestPostID").val();
     console.log("checking IsItAValidPostIdEntry" + postID);
-    if(Math.floor(postID) == postID && jQuery.isNumeric(postID))  {
+    if(Math.floor(postID) == postID && jQuery.isNumeric(postID)){
         //console.log("postID" + postID);
         return true;
     }else{
@@ -92,12 +115,18 @@ DeveloperContest.setDescriptionMessageToDefault = function(){
 DeveloperContest.validatePostIdAfterKeypress = function(){
     jQuery("#developer-contest-preview-post-about-to-be-selected").text("");
     var postID = jQuery("#contestPostID").val();
+
+    if(postID == ""){
+       // console.log("validatePostIdAfterKeypress");
+        jQuery("#developer-contest-postid-submit-button").prop("disabled",true);
+        return;
+    }
     if(DeveloperContest.IsItAValidPostIdEntry() || (postID == "")){
-        console.log("IsItAValidPostIdEntry 90 post is valid");
+        //console.log("IsItAValidPostIdEntry 90 post is valid");
         DeveloperContest.setDescriptionMessageToDefault();
     }else{
-        console.log("post is NOT valid");
-        console.log(DeveloperContest.stringEnterOnlyAnInteger);
+        //console.log("post is NOT valid");
+        //console.log(DeveloperContest.stringEnterOnlyAnInteger);
         jQuery("#developer-contest-p-enter-a-post-or-page-id").html(DeveloperContest.stringEnterOnlyAnInteger);
         jQuery("#developer-contest-p-enter-a-post-or-page-id").css("color", "red");
         jQuery("#developer-contest-postid-submit-button").prop("disabled",true);

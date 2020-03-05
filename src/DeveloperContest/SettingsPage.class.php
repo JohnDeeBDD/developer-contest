@@ -126,11 +126,14 @@ OUTPUT;
     }
 
     public function renderDeveloperContestAdminSettingsPage(){
-       // $nonceField = wp_create_nonce( 'useDeveloperContestSettingsPage');
-        //$frontEndJQuery = $this->returnJquery();
-        $contestRows = $this->listContestRows();
-       // $otherNonce = wp_create_nonce( 'wp_rest' );
-        require("SettingsPage.php");
+
+        $SiteAuth = new \DeveloperContest\SiteAuth();
+        if (!($SiteAuth->isRemoteSiteRegistered())) {
+            echo($SiteAuth->returnUiHtml());
+        }else{
+            require("SettingsPage.php");
+        }
+
     }
 
     public function returnJquery(){
@@ -168,6 +171,32 @@ OUTPUT;
         );
         wp_localize_script( 'developer-contest-admin-settings-page', 'DeveloperContest', []);
         wp_enqueue_script('developer-contest-admin-settings-page');
+    }
+
+    public function activeContestEntriesForCurrentUserTableRowsHTML($postID){
+        $userID = get_current_user_id();
+        //die($userID);
+        $args = array(
+            'author'    =>  $userID,
+            'meta_query' => array(
+                array(
+                    'key' => 'developer-contest-entry',
+                    'value' => $postID
+                )
+            )
+        );
+        $my_secondary_loop = new \WP_Query($args);
+        $output = "";
+        if( $my_secondary_loop->have_posts() ) {
+            while ($my_secondary_loop->have_posts()){
+                $my_secondary_loop->the_post();
+                $postID = get_the_ID();
+                $meta_data = get_post_custom($postID);
+                $output = $output . "<tr><th></th><td>" . "<a href = '" . "/wp-admin/post.php?post=$postID&action=edit" . "' target = '_blank'>"  . get_the_title() . "</a></tr></td>"; // your custom-post-type post's title
+
+            }
+        }
+        return $output;
     }
 
 }

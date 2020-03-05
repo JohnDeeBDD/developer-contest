@@ -61,7 +61,12 @@ class FreelancerRole{
     }
 
     public function returnFreelancerActionButtons($postID){
-
+        $nonce = wp_create_nonce( "developer-contest-create-new-contest-entry-nonce" );
+        $output = <<<OUTPUT
+<input type = "button" id = "developer-contest-create-new-contest-entry-button-$postID" class = "developer-contest-action-button" value = "New Entry" />
+<input type = "hidden" name = "developer-contest-create-new-contest-entry-nonce" value = "$nonce" />
+OUTPUT;
+        return $output;
     }
 
     public function isPostAContest($postID){}

@@ -1,4 +1,5 @@
 class_name: AcceptanceTester
+#ssh ubuntu@54.68.103.203
 modules:
   enabled:
     - \Helper\Acceptance
@@ -10,22 +11,24 @@ modules:
   config:
     #WPWebDriver:
     WPCLI:
-      path: /var/www/html/
+      path: /var/www/html/wphttps/
       throw: true
     WPDb:
-      dsn: 'mysql:host=localhost;dbname=wordpress'
+      # sudo mysqldump -ppassword wphttps > /var/www/html/wphttps/wp-content/plugins/developer-contest/tests/_data/dump.sql
+      dsn: 'mysql:host=localhost;dbname=wphttps'
+      wait: 5
       user: wordpressuser
       password: password
       dump: tests/_data/dump.sql
-      populate: false
+      populate: true
       cleanup: false
-      url: 'http://ec2-54-173-26-113.compute-1.amazonaws.com/'
+      url: 'https://wphttps.par.pw/'
       tablePrefix: wp_
     WPWebDriver:
-      url: 'http://ec2-54-173-26-113.compute-1.amazonaws.com/'
+      url: 'https://wphttps.par.pw/'
       window_size: 800,480
-      adminUsername: 'admin'
-      adminPassword: 'password'
+      adminUsername: 'ubuntu'
+      adminPassword: 'Parler123$'
       clear_cookies: true
       adminPath: /wp-admin
       port: 4444 #chromedriver --url-base=/wd/hub
@@ -42,8 +45,8 @@ modules:
     WPLoader:
       multisite: false
       loadOnly: true
-      wpRootFolder: "/var/www/html"
-      dbName: wordpress
+      wpRootFolder: "/var/www/html/wphttps"
+      dbName: wphttps
       dbHost: localhost
       dbUser: wordpressuser
       dbPassword: password

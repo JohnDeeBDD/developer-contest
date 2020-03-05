@@ -1,3 +1,5 @@
+tests/acceptance/AdminActionDesignatePostAsContestCept.php
 tests/acceptance/BrowserCept.php
 tests/acceptance/FetchPostTitleApiCept.php
 tests/acceptance/PostIdInputValidatorCept.php
+tests/acceptance/AdminActionUpdateContestDataCest.php:theApitShouldWork

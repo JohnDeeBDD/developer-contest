@@ -29,13 +29,7 @@ if ( in_array( 'administrator', (array) $user->roles ) ) {
 ?>
                     </tbody>
                 </table>
-                <div id = "contest-end">
-                <input type = "text" name ="contest-end" id = "" /></div>
             </form>
-            <?php
-                $SiteAuth = new \DeveloperContest\SiteAuth();
-                echo ($SiteAuth->returnUiHtml());
-            ?>
         </div>
         <!-- END: #wrap -->
     </div>
