@@ -24,7 +24,7 @@ class Action_RemovePostAsContest extends Action_Abstract{
     //where can this action occur
     public function setScreens($screens = []){}
 
-    private function enableApi(){}
+    public function enableApi(){}
     public function listenForHtmlSubmission(){
         //die("listening");
         if(isset($_REQUEST['action'])){
@@ -69,7 +69,7 @@ class Action_RemovePostAsContest extends Action_Abstract{
         $javaScript = $this->returnJS($postID);
         $nonce = wp_create_nonce("remove-post-as-contest");
         $output = <<<OUTPUT
-<input type = "button" name = "developer-contest-action-remove-post-as-contest-button" id = "developer-contest-action-remove-post-as-contest-button" value = "REMOVE"/>
+<input type = "button" name = "developer-contest-action-remove-post-as-contest-button" id = "developer-contest-action-remove-post-as-contest-button" value = "Remove"/>
 <input type = "hidden" name = "developer-contest-action-remove-post-as-contest-nonce" id = "developer-contest-action-remove-post-as-contest-nonce" value = "$nonce" /> 
 $javaScript
 OUTPUT;

@@ -51,7 +51,7 @@ class ContestTest extends \Codeception\TestCase\WPTestCase
             'post_status'   => 'publish',
         );
         $postID = wp_insert_post( $post);
-        $Admin = new \DeveloperContest\AdminRole();
+        $Admin = new \DeveloperContest\Role_Admin();
         $Admin->designatePostAsContest($postID);
 
 

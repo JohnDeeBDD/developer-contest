@@ -9,7 +9,7 @@ class FreelancerActionsTest extends \Codeception\TestCase\WPTestCase
      */
     public function it_should_be_instantiatable()
     {
-        $FrelancerRole = new \DeveloperContest\FreelancerRole();
+        $FrelancerRole = new \DeveloperContest\Role_Freelancer();
     }
 
     /**
@@ -17,9 +17,9 @@ class FreelancerActionsTest extends \Codeception\TestCase\WPTestCase
      * it should identify a valid contest
      */
     public function isShouldIdentifyAnActiveContest(){
-        $FrelancerRole = new \DeveloperContest\FreelancerRole();
+        $FrelancerRole = new \DeveloperContest\Role_Freelancer();
 
-        $AdminActions = new \DeveloperContest\AdminRole();
+        $AdminActions = new \DeveloperContest\Role_Admin();
         $post = array(
             'post_title'    => 'My post',
             'post_content'  => 'This is my post.',

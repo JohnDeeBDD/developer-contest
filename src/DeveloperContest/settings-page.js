@@ -19,8 +19,8 @@ jQuery(document).ready(function() {
     jQuery(".developer-contest-action-button").click(function(){
         var postID = DeveloperContest.returnPostIdOfClickedElement(this);
         var queryString = '/wp-admin/admin.php?page=developer-contest&action=developer-contest-create-new-contest-entry' + '&contestPostID=' + postID;
-        jQuery('#developer-contest-form').attr('action', queryString);
-        jQuery("#developer-contest-form").submit(); // Submit
+       // jQuery('#developer-contest-form').attr('action', queryString);
+       // jQuery("#developer-contest-form").submit(); // Submit
     });
 });
 DeveloperContest.returnPostIdOfClickedElement = function(clickedElement){
@@ -92,6 +92,7 @@ DeveloperContest.fetchPostTitleAjax = function(postID){
         }
     });
 }
+
 DeveloperContest.IsItAValidPostIdEntry = function(){
     //This function checks to see that the entry is a number or blank
     var postID = jQuery("#contestPostID").val();

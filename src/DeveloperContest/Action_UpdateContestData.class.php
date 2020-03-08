@@ -19,7 +19,7 @@ class Action_UpdateContestData extends Action_Abstract{
     //where can this action occur
     public function setScreens($screens = []){}
 
-    private function enableApi(){}
+    public function enableApi(){}
     public function listenForHtmlSubmission(){
         if(isset($_REQUEST['action'])){
             if($_REQUEST['action'] == ($this->namespace . "-" . $this->actionName)){

@@ -2,7 +2,7 @@
 
 namespace DeveloperContest;
 
-class Api_FetchPostTitleFromIdEvenIfPostIsUnpublished{
+class Action_FetchPostTitleFromIdEvenIfPostIsUnpublished extends Action_Abstract{
 
     public function enableApi(){
         add_action ('rest_api_init', array($this, 'doRegisterRoutes'));
@@ -14,7 +14,7 @@ class Api_FetchPostTitleFromIdEvenIfPostIsUnpublished{
             'fetch-title',
             array(
                 'methods'               => array('POST'),
-                'callback'              => array($this, 'fetchTitleApiCallback'),
+                'callback'              => array($this, 'doAction'),
                 'permission_callback'   => function(){
                     if(!(current_user_can( 'activate_plugins' ))){
                         return FALSE;
@@ -25,7 +25,7 @@ class Api_FetchPostTitleFromIdEvenIfPostIsUnpublished{
         );
     }
 
-    public function fetchTitleApiCallback($request){
+    public function doAction($request){
         if(!(isset($_REQUEST['postID']))){
             return "Error: No post id";
         }
@@ -48,5 +48,6 @@ class Api_FetchPostTitleFromIdEvenIfPostIsUnpublished{
         //an existing post will have some kind of post status that is a string
         return is_string( get_post_status($postID) );
     }
+
 }
 

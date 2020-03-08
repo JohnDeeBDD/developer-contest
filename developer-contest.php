@@ -20,16 +20,16 @@ $slug = $Action->namespace;
 
 
 function activatePlugin() {
-    $Freelancer = new FreelancerRole;
-    $Freelancer->enable();
+    $Freelancer = new Role_Freelancer;
+    //$Freelancer->enable();
 }
 register_activation_hook( __FILE__, '\DeveloperContest\activatePlugin' );
 
 
-$AdminRole = new AdminRole;
-add_action("init", [$AdminRole, "enable"]);
+$Role_Admin = new Role_Admin;
+add_action("init", [$Role_Admin, "enable"]);
 
-$Freelancer = new FreelancerRole;
+$Role_Freelancer = new Role_Freelancer;
 $Action_CreateNewContestEntry = new Action_CreateNewContestEntry;
 $Action_CreateNewContestEntry->enable();
 
@@ -52,3 +52,10 @@ $SiteAuth->enableApi();
  * prize
  *
  */
+
+// ssh ubuntu@54.68.103.203
+// cd /var/www/html/wp-content/plugins/WPbdd
+// xvfb-run java -Dwebdriver.chrome.driver=/var/www/html/wp-content/plugins/WPbdd/chromedriver -jar selenium.jar// xvfb-run java -Dwebdriver.chrome.driver=/var/www/chromedriver -jar selenium.jar
+// cd /var/www/html/wphttps/wp-content/plugins/developer-contest
+// bin/codecept run acceptance -vvv --html
+

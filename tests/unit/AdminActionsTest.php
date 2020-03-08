@@ -7,7 +7,7 @@ class AdminActionsTest extends \Codeception\TestCase\WPTestCase{
      * it should be instantiatable
      */
     public function it_should_be_instantiatable(){
-        $AdminActions = new \DeveloperContest\AdminRole();
+        $AdminActions = new \DeveloperContest\Role_Admin();
     }
 
     /**
@@ -16,7 +16,7 @@ class AdminActionsTest extends \Codeception\TestCase\WPTestCase{
      * We will be adding a custom post metat to the post
      */
     public function itShouldDesignateThePostAsAContest(){
-        $AdminActions = new \DeveloperContest\AdminRole();
+        $AdminActions = new \DeveloperContest\Role_Admin();
         $post = array(
             'post_title'    => 'My post',
             'post_content'  => 'This is my post.',

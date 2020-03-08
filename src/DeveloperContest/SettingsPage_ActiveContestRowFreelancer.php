@@ -20,7 +20,7 @@ $args = array(
     )
 );
 $my_secondary_loop = new \WP_Query($args);
-$FreelancerRole = new \DeveloperContest\FreelancerRole();
+$FreelancerRole = new \DeveloperContest\Role_Freelancer();
 if( $my_secondary_loop->have_posts() ) {
     $output = "";
     $SettingsPage = new \DeveloperContest\SettingsPage;
@@ -33,7 +33,7 @@ if( $my_secondary_loop->have_posts() ) {
                 continue;
             }
         }
-        $output = $output . "<tr><th>" . $FreelancerRole->returnFreelancerActionButtons($postID) . "</th><td>" . "<a href = '" . get_the_permalink() . "' target = '_blank'>"  . get_the_title() . "</a></tr></td>"; // your custom-post-type post's title
+        $output = $output . "<tr><th>" . $FreelancerRole->returnActionButtons($postID) . "</th><td>" . "<a href = '" . get_the_permalink() . "' target = '_blank'>"  . get_the_title() . "</a></tr></td>"; // your custom-post-type post's title
         $output = $output . ($SettingsPage->activeContestEntriesForCurrentUserTableRowsHTML($postID));
     }
 }

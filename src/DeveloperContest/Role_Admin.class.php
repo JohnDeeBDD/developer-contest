@@ -2,7 +2,7 @@
 
 namespace DeveloperContest;
 
-class AdminRole{
+class Role_Admin{
 
     public function __construct(){
         $Action_RemovePostAsContest = new Action_RemovePostAsContest;
@@ -15,47 +15,15 @@ class AdminRole{
            // die("11");
           //  $this->listenForStartContestSubmission();
             add_action('rest_api_init', array($this, 'doRegisterRouteStartContest'));
-            $fetchPostTitle = new Api_FetchPostTitleFromIdEvenIfPostIsUnpublished;
+            $fetchPostTitle = new Action_FetchPostTitleFromIdEvenIfPostIsUnpublished;
             $fetchPostTitle->enableApi();
 
         }
 
     }
 
-    public function listenForStartContestSubmission(){
-        //die("listenForStartContestSubmission");
-        if(isset($_REQUEST['action'])){
-
-            if($_REQUEST['action'] == "developer-contest-designate-post-as-contest"){
-                //die("listenForStartContestSubmission action set");
-                if (isset($_REQUEST['contestPostID'])){
-                    $postID = $_REQUEST['contestPostID'];
-                    if(!($this->validateRequestDesignatePostAsContest($postID))){
-                        die("SOMETHING IS WRONG! PostID did not validate.");
-                    };
-                    if(!(isset($_REQUEST['developer-contest-designate-post-as-contest-nonce']))){
-                        die("SOMETHING IS WRONG! NONCE NOT FOUND.");
-                    }
-                    if(!(\wp_verify_nonce( $_REQUEST['developer-contest-designate-post-as-contest-nonce'], 'developer-contest-designate-post-as-contest-nonce' ))){
-                        die("SOMETHING IS WRONG! INVALID NONCE!");
-                    }
-                    $this->designatePostAsContest($_REQUEST['contestPostID']);
-                }
-            }
-        }
-    }
-
-    public function enableAbilityToDeclareWinner(){
-
-        // add_action( "designate-post-as-contest", [$this, "designatePostAsContest"], 10, 1 );
-        /*
-        public function enableActionDesignatePostAsConstest(){}
-        public function enableActionDesignateContestWinner(){}
-    */
-    }
-
     public function designatePostAsContest($postID){
-            update_post_meta( $postID, "developer-contest", "active");
+            //update_post_meta( $postID, "developer-contest", "active");
         }
 
     public function doRegisterRouteStartContest(){
@@ -67,7 +35,7 @@ class AdminRole{
                 'callback'              => function($request)
                 {
                     $postID = $request["post-id"];
-                    $AdminActions = new \DeveloperContest\AdminRole();
+                    $AdminActions = new \DeveloperContest\Role_Admin();
                     $AdminActions->designatePostAsContest($postID);
                 },
                 'permission_callback'   =>  function(){
@@ -100,6 +68,9 @@ class AdminRole{
         }
         $removeButton = new Action_RemovePostAsContest;
         $html = $removeButton->getActionButtonUiHtml($postID);
+
+        $Action_CreateNewContestEntry = new Action_CreateNewContestEntry;
+        $html = $html . ($Action_CreateNewContestEntry->getActionButtonUiHtml($postID));
         return ("Details Fund Start End $html");
     }
 

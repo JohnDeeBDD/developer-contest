@@ -34,7 +34,7 @@ if( $my_secondary_loop->have_posts() ) {
         }
 
 
-        $AdminRole = new \DeveloperContest\AdminRole;
+        $AdminRole = new \DeveloperContest\Role_Admin;
         $adminActionButtons = $AdminRole->returnActionButtons($postID);
         $DateTimePicker = new \DeveloperContest\DateTimePicker();
         $DtPOutput = $DateTimePicker->returnDateTimePickerUI($postID);

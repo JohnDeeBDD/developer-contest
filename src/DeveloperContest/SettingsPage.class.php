@@ -35,7 +35,7 @@ class SettingsPage{
         }
 
         //at this point, we know the input is a number. Now let's check if it's a valid postID
-        $API = new Api_FetchPostTitleFromIdEvenIfPostIsUnpublished();
+        $API = new Action_FetchPostTitleFromIdEvenIfPostIsUnpublished();
         $validated = $API->doesPostExist($postID);
 
         return $validated;

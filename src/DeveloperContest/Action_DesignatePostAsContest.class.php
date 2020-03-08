@@ -21,16 +21,15 @@ class Action_DesignatePostAsContest extends Action_Abstract{
     //where can this action occur
     public function setScreens($screens = []){}
 
-    private function enableApi(){}
+    public function enableApi(){}
     public function listenForHtmlSubmission(){
-        //return;
         if(isset($_REQUEST['action'])){
             if($_REQUEST['action'] == ($this->namespace . "-" . $this->actionName)){
                 //die("listenForStartContestSubmission action set");
                 if (isset($_REQUEST['contestPostID'])){
                     $postID = $_REQUEST['contestPostID'];
                     if(!($this->validateFormSubmission($postID))){
-                        wp_die("SOMETHING IS WRONG! PostID did not validate.");
+                        wp_die("SOMETHING IS WRONG! PostID did not validate. Designate Post as Contest");
                     };
                     if(!(isset($_REQUEST['developer-contest-designate-post-as-contest-nonce']))){
                         wp_die("SOMETHING IS WRONG! NONCE NOT FOUND.");
@@ -59,6 +58,6 @@ class Action_DesignatePostAsContest extends Action_Abstract{
     }
 
     public function doAction($postID){
-            update_post_meta( $postID, "developer-contest", "active");
+        update_post_meta( $postID, "developer-contest", "active");
     }
 }

@@ -22,10 +22,12 @@ $I->click("#developer-contest-postid-submit-button");
 /**
  * THEN
  */
-//$AdminActions = new \DeveloperContest\AdminRole();
+//$AdminActions = new \DeveloperContest\Role_Admin();
 //$AdminActions->designatePostAsContest($postID);
 
 //$I->amOnPage("/wp-admin/admin.php?page=developer-contest");
 $I->see($testPostTitle);
 //Cleanup
-//wp_delete_post( $postID, TRUE);
+wp_delete_post( $postID, TRUE);
+
+

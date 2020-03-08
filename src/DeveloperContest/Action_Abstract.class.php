@@ -22,18 +22,16 @@ abstract class Action_Abstract{
     public function __construct(){
         $this->setNamespace();
         add_action("init", [$this, "listenForHtmlSubmission"]);
-        $this->enableApi();
+        //$this->enableApi();
     }
 
     //who can do this action
-    public function setRoles($roles = []){
-
-    }
+    public function setRoles($roles = []){}
 
     //where can this action occur
     public function setScreens($screens = []){}
 
-    private function enableApi(){}
+    public function enableApi(){}
     public function getActionButtonUiHtml($args){}
     public function listenForHtmlSubmission(){}
     public function validateFormSubmission($args){}
