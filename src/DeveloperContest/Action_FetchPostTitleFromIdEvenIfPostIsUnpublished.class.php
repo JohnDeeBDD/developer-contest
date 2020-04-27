@@ -5,10 +5,11 @@ namespace DeveloperContest;
 class Action_FetchPostTitleFromIdEvenIfPostIsUnpublished extends Action_Abstract{
 
     public function enableApi(){
-        add_action ('rest_api_init', array($this, 'doRegisterRoutes'));
+
     }
 
     public function doRegisterRoutes(){
+        //die("Action_FetchPostTitleFromIdEvenIfPostIsUnpublished line 12");
         register_rest_route(
             'developer-contest/v1',
             'fetch-title',

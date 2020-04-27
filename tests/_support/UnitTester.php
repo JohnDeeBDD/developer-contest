@@ -28,7 +28,9 @@ class UnitTester extends \Codeception\Actor
    {
        //parent::__construct($scenario);
 
-       require_once('/var/www/html/wphttps/wp-content/plugins/developer-contest/src/DeveloperContest/autoloader.php');
+       //require_once('/var/www/html/wphttps/wp-content/plugins/developer-contest/src/DeveloperContest/autoloader.php');
+
+       require_once('/var/www/html/wp-content/plugins/developer-contest/src/DeveloperContest/autoloader.php');
 
    }
 }

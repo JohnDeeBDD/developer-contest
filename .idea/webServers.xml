@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="273bbd74-84cb-4d0b-98bf-e1b9ab59beef" name="aws" url="http://ec2-52-90-97-71.compute-1.amazonaws.com/">
-        <fileTransfer host="ec2-52-90-97-71.compute-1.amazonaws.com" port="22" privateKey="$USER_HOME$/Desktop/AwsPems/macandcheese.pem" accessType="SFTP" keyPair="true">
+      <webServer id="dfd3d902-0aea-4155-891f-87630d984b56" name="google" url="http://35.193.111.224">
+        <fileTransfer host="35.193.111.224" port="22" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

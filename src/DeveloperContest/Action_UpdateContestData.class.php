@@ -26,7 +26,7 @@ class Action_UpdateContestData extends Action_Abstract{
                 //die("listenForStartContestSubmission action set");
                 if (isset($_REQUEST['contestPostID'])){
                     $postID = $_REQUEST['contestPostID'];
-                    if(!($this->validateFormSubmission($postID))){
+                    if(!($this->validateSubmission($postID))){
                         wp_die("SOMETHING IS WRONG! PostID did not validate.");
                     };
                     if(!(isset($_REQUEST['developer-contest-update-contest-data-nonce']))){
@@ -46,7 +46,7 @@ class Action_UpdateContestData extends Action_Abstract{
     private function verifyNonce(){}
     private function verifyUser(){}
 
-    public function validateFormSubmission($postID){
+    public function validateSubmission($postID){
         if(is_int(intval($postID))){
             if ( get_post_status ( $postID) ) {
                 return TRUE;

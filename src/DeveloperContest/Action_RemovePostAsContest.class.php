@@ -8,31 +8,14 @@ class Action_RemovePostAsContest extends Action_Abstract{
     public $actionName = "remove-post-as-contest";
     public $availableLocations = ["developer-contest"];
 
-
-    public function __construct()
-    {
-        parent::__construct();
-        //die("Action_DesignatePostAsContest");
-    }
-    public function enable(){
-        add_action("init", [$this, "listenForHtmlSubmission"]);
-    }
-
-    //who can do this action
-    public function setRoles($roles = []){}
-
-    //where can this action occur
-    public function setScreens($screens = []){}
-
-    public function enableApi(){}
     public function listenForHtmlSubmission(){
-        //die("listening");
+        //die("listening RemovePostAsContest");
         if(isset($_REQUEST['action'])){
             if($_REQUEST['action'] == ($this->namespace . "-" . $this->actionName)){
                 //die("action set");
                 if (isset($_REQUEST['post-id'])){
                     $postID = $_REQUEST['post-id'];
-                    if(!($this->validateFormSubmission($postID))){
+                    if(!($this->validateSubmission($postID))){
                         wp_die("SOMETHING IS WRONG! PostID did not validate.");
                     };
                     if(!(isset($_REQUEST['developer-contest-designate-post-as-contest-nonce']))){
@@ -49,10 +32,9 @@ class Action_RemovePostAsContest extends Action_Abstract{
             }
         }
     }
-    private function verifyNonce(){}
-    private function verifyUser(){}
+    public function verifyNonce(){}
 
-    public function validateFormSubmission($postID){
+    public function validateSubmission($postID){
         if(is_int(intval($postID))){
             if ( get_post_status ( $postID) ) {
                 return TRUE;

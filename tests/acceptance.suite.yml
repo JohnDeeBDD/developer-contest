@@ -11,24 +11,25 @@ modules:
   config:
     #WPWebDriver:
     WPCLI:
-      path: /var/www/html/wphttps/
+      path: /var/www/html/
       throw: true
     WPDb:
-      # sudo mysqldump -ppassword wphttps > /var/www/html/wphttps/wp-content/plugins/developer-contest/tests/_data/dump.sql
-      dsn: 'mysql:host=localhost;dbname=wphttps'
+      # sudo mysqldump -ppassword wordpress > /var/www/html/wp-content/plugins/developer-contest/tests/_data/dump.sql
+      dsn: 'mysql:host=localhost;dbname=wordpress'
       wait: 5
       user: wordpressuser
       password: password
       dump: tests/_data/dump.sql
       populate: true
       cleanup: false
-      url: 'https://wphttps.par.pw/'
+      populator: 'mysql -u $user -ppassword -h $host $dbname < $dump'
+      url: 'http://localhost/'
       tablePrefix: wp_
     WPWebDriver:
-      url: 'https://wphttps.par.pw/'
+      url: 'http://localhost/'
       window_size: 800,480
-      adminUsername: 'ubuntu'
-      adminPassword: 'Parler123$'
+      adminUsername: 'admin'
+      adminPassword: 'password'
       clear_cookies: true
       adminPath: /wp-admin
       port: 4444 #chromedriver --url-base=/wd/hub
@@ -45,8 +46,8 @@ modules:
     WPLoader:
       multisite: false
       loadOnly: true
-      wpRootFolder: "/var/www/html/wphttps"
-      dbName: wphttps
+      wpRootFolder: "/var/www/html"
+      dbName: wordpress
       dbHost: localhost
       dbUser: wordpressuser
       dbPassword: password

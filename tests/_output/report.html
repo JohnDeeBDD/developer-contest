@@ -209,25 +209,25 @@
  <body>
    <ul id="toolbar-filter">
      <li> <a href="#" title="Show all" onClick="showAllScenarios()">◯</a></li>
-     <li> <a href="#" title="Successful" onClick="toggleScenarios('scenarioSuccess', this.parentElement)"><strong>✔</strong> 5</a></li>
+     <li> <a href="#" title="Successful" onClick="toggleScenarios('scenarioSuccess', this.parentElement)"><strong>✔</strong> 14</a></li>
      <li> <a href="#" title="Failed" onClick="toggleScenarios('scenarioFailed', this.parentElement)"><strong>✗</strong> 0</a></li>
      <li> <a href="#" title="Skipped" onClick="toggleScenarios('scenarioSkipped', this.parentElement)"><strong>S</strong> 0</a></li>
      <li> <a href="#" title="Incomplete" onClick="toggleScenarios('scenarioIncomplete', this.parentElement)"><strong>I</strong> 0</a></li>
    </ul>
  <div class="layout">
- <h1>Codeception Results <small><span style="color: green">OK</span> (11.3s)</small></h1>
+ <h1>Codeception Results <small><span style="color: green">OK</span> (0.1s)</small></h1>
 
 
 
 	 <table border="0" style="width: 100%;">
 		<tr>
  <td>
-     <h3>Acceptance Tests</h3>
+     <h3>Unit Tests</h3>
  </td>
 </tr>   <tr class="scenarioRow scenarioSuccess">
     <td>
-     <p class="scenarioSuccess" onclick="showHide('1', this)"><span class="toggle">+</span>
-          <span class="quiet">AdminActionDesignatePostAsContestCept &raquo;</span> Confirm the admin action designate-post-as-contest <span style="color: #34495e; font-size: 70%;">5.12s</span></p>
+     <p class="scenarioSuccess" onclick="showHide('1', this)">
+          <span class="quiet">Action_AbstractTest &raquo;</span> It_should_be_extensible <span style="color: #34495e; font-size: 70%;">0s</span></p>
     </td>
    </tr>
    <tr class="scenarioRow scenarioSuccess">
@@ -235,30 +235,6 @@
      <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer1">
 
 
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I login as admin</td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I am on page <span style="color: #732E81">&quot;/wp-admin/admin.php?page=developer-contest&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I fill field <span style="color: #732E81">&quot;contestPostID&quot;,139</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I wait for text <span style="color: #732E81">&quot;Test post for AdminActionDesignatePostAsConcestCept.php&quot;,5</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I click <span style="color: #732E81">&quot;#developer-contest-postid-submit-button&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I see <span style="color: #732E81">&quot;Test post for AdminActionDesignatePostAsConcestCept.php&quot;</span></td>
-      </tr>
-
 
          
          
@@ -272,8 +248,8 @@
 
    <tr class="scenarioRow scenarioSuccess">
     <td>
-     <p class="scenarioSuccess" onclick="showHide('2', this)"><span class="toggle">+</span>
-          <span class="quiet">BrowserCept &raquo;</span> See that the browser can launch <span style="color: #34495e; font-size: 70%;">1.98s</span></p>
+     <p class="scenarioSuccess" onclick="showHide('2', this)">
+          <span class="quiet">Action_CreateNewContestEntryTest &raquo;</span> It_should_be_instantiatable <span style="color: #34495e; font-size: 70%;">0s</span></p>
     </td>
    </tr>
    <tr class="scenarioRow scenarioSuccess">
@@ -281,14 +257,6 @@
      <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer2">
 
 
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I am on url <span style="color: #732E81">&quot;https://generalchicken.net&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I see <span style="color: #732E81">&quot;WordPress&quot;</span></td>
-      </tr>
-
 
          
          
@@ -302,8 +270,8 @@
 
    <tr class="scenarioRow scenarioSuccess">
     <td>
-     <p class="scenarioSuccess" onclick="showHide('3', this)"><span class="toggle">+</span>
-          <span class="quiet">FetchPostTitleApiCept &raquo;</span> Confirm the fetch-title API is working <span style="color: #34495e; font-size: 70%;">1.79s</span></p>
+     <p class="scenarioSuccess" onclick="showHide('3', this)">
+          <span class="quiet">Action_CreateNewContestEntryTest &raquo;</span> It should create a new contest entry <span style="color: #34495e; font-size: 70%;">0.02s</span></p>
     </td>
    </tr>
    <tr class="scenarioRow scenarioSuccess">
@@ -311,50 +279,6 @@
      <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer3">
 
 
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I login as admin</td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I am on page <span style="color: #732E81">&quot;/wp-admin/admin.php?page=developer-contest&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I execute js <span style="color: #732E81">&quot;DeveloperContest.fetchPostTitleAjax(141);return;&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I wait for js <span style="color: #732E81">&quot;return jQuery.active == 0&quot;,10</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I execute js <span style="color: #732E81">&quot;return fetchPostTitleResponse;&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I assert equals <span style="color: #732E81">&quot;Test post for fetch-post API&quot;,&quot;Test post for fetch-post API&quot;,&quot;Error xx response: Test post for fetch-post API&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I am on page <span style="color: #732E81">&quot;/wp-admin/admin.php?page=developer-contest&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I execute js <span style="color: #732E81">&quot;DeveloperContest.fetchPostTitleAjax(123);return;&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I wait for js <span style="color: #732E81">&quot;return jQuery.active == 0&quot;,10</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I execute js <span style="color: #732E81">&quot;return fetchPostTitleResponse;&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I assert equals <span style="color: #732E81">&quot;Error: post does not exist&quot;,&quot;Error: post does not exist&quot;,&quot;Error: Error: post does not exist&quot;</span></td>
-      </tr>
-
 
          
          
@@ -368,46 +292,14 @@
 
    <tr class="scenarioRow scenarioSuccess">
     <td>
-     <p class="scenarioSuccess" onclick="showHide('4', this)"><span class="toggle">+</span>
-          <span class="quiet">PostIdInputValidatorCept &raquo;</span> Confirm the frontend validation works on admin settings page <span style="color: #34495e; font-size: 70%;">2.4s</span></p>
+     <p class="scenarioSuccess" onclick="showHide('4', this)">
+          <span class="quiet">AdminActionsTest &raquo;</span> It_should_be_instantiatable <span style="color: #34495e; font-size: 70%;">0s</span></p>
     </td>
    </tr>
    <tr class="scenarioRow scenarioSuccess">
     <td>
      <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer4">
 
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I login as admin</td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I am on page <span style="color: #732E81">&quot;/wp-admin/admin.php?page=developer-contest&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I execute js <span style="color: #732E81">&quot;    return DeveloperContest.validatePostIdTextField(&quot;&quot;);&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I assert equals <span style="color: #732E81">false,false</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I execute js <span style="color: #732E81">&quot;    return DeveloperContest.validatePostIdTextField(&quot;123&quot;);&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I assert equals <span style="color: #732E81">true,true</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I execute js <span style="color: #732E81">&quot;    return DeveloperContest.validatePostIdTextField(&quot;123abc&quot;);&quot;</span></td>
-      </tr>
-
-      <tr>
-       <td class="stepName ">&nbsp;&nbsp;&nbsp;&nbsp;I assert equals <span style="color: #732E81">false,false</span></td>
-      </tr>
 
 
          
@@ -423,12 +315,210 @@
    <tr class="scenarioRow scenarioSuccess">
     <td>
      <p class="scenarioSuccess" onclick="showHide('5', this)">
-          <span class="quiet">AdminActionUpdateContestDataCest &raquo;</span> The apit should work <span style="color: #34495e; font-size: 70%;">0.01s</span></p>
+          <span class="quiet">AdminActionsTest &raquo;</span> It should designate the post as a contest <span style="color: #34495e; font-size: 70%;">0.01s</span></p>
     </td>
    </tr>
    <tr class="scenarioRow scenarioSuccess">
     <td>
      <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer5">
+
+
+
+         
+         
+         
+     </table>
+
+
+    </td>
+   </tr>
+
+
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <p class="scenarioSuccess" onclick="showHide('6', this)">
+          <span class="quiet">ContestTest &raquo;</span> It_should_be_instantiatable <span style="color: #34495e; font-size: 70%;">0s</span></p>
+    </td>
+   </tr>
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer6">
+
+
+
+         
+         
+         
+     </table>
+
+
+    </td>
+   </tr>
+
+
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <p class="scenarioSuccess" onclick="showHide('7', this)">
+          <span class="quiet">ContestTest &raquo;</span> It should return status_no post <span style="color: #34495e; font-size: 70%;">0s</span></p>
+    </td>
+   </tr>
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer7">
+
+
+
+         
+         
+         
+     </table>
+
+
+    </td>
+   </tr>
+
+
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <p class="scenarioSuccess" onclick="showHide('8', this)">
+          <span class="quiet">ContestTest &raquo;</span> It should return status_no contest <span style="color: #34495e; font-size: 70%;">0.01s</span></p>
+    </td>
+   </tr>
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer8">
+
+
+
+         
+         
+         
+     </table>
+
+
+    </td>
+   </tr>
+
+
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <p class="scenarioSuccess" onclick="showHide('9', this)">
+          <span class="quiet">ContestTest &raquo;</span> It should return status_active <span style="color: #34495e; font-size: 70%;">0.01s</span></p>
+    </td>
+   </tr>
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer9">
+
+
+
+         
+         
+         
+     </table>
+
+
+    </td>
+   </tr>
+
+
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <p class="scenarioSuccess" onclick="showHide('10', this)">
+          <span class="quiet">FreelancerActionsTest &raquo;</span> It_should_be_instantiatable <span style="color: #34495e; font-size: 70%;">0s</span></p>
+    </td>
+   </tr>
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer10">
+
+
+
+         
+         
+         
+     </table>
+
+
+    </td>
+   </tr>
+
+
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <p class="scenarioSuccess" onclick="showHide('11', this)">
+          <span class="quiet">FreelancerActionsTest &raquo;</span> Is should identify an active contest <span style="color: #34495e; font-size: 70%;">0.01s</span></p>
+    </td>
+   </tr>
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer11">
+
+
+
+         
+         
+         
+     </table>
+
+
+    </td>
+   </tr>
+
+
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <p class="scenarioSuccess" onclick="showHide('12', this)">
+          <span class="quiet">FreelancerActionsTest &raquo;</span> It should create an entry <span style="color: #34495e; font-size: 70%;">0s</span></p>
+    </td>
+   </tr>
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer12">
+
+
+
+         
+         
+         
+     </table>
+
+
+    </td>
+   </tr>
+
+
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <p class="scenarioSuccess" onclick="showHide('13', this)">
+          <span class="quiet">SettingsPageTest &raquo;</span> It_should_be_instantiatable <span style="color: #34495e; font-size: 70%;">0s</span></p>
+    </td>
+   </tr>
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer13">
+
+
+
+         
+         
+         
+     </table>
+
+
+    </td>
+   </tr>
+
+
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <p class="scenarioSuccess" onclick="showHide('14', this)">
+          <span class="quiet">SettingsPageTest &raquo;</span> It should validate the post id submission <span style="color: #34495e; font-size: 70%;">0.01s</span></p>
+    </td>
+   </tr>
+   <tr class="scenarioRow scenarioSuccess">
+    <td>
+     <table border="0" width="100%" class="scenarioSuccess scenarioStepsTable" id="stepContainer14">
 
 
 
@@ -450,7 +540,7 @@
       <table border="0">
        <tr>
         <td width="250" class="scenarioSuccess">Successful scenarios:</td>
-        <td class="scenarioSuccessValue"><strong>5</strong></td>
+        <td class="scenarioSuccessValue"><strong>14</strong></td>
        </tr>
        <tr>
         <td class="scenarioFailed">Failed scenarios:</td>

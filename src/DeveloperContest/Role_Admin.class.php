@@ -5,8 +5,7 @@ namespace DeveloperContest;
 class Role_Admin{
 
     public function __construct(){
-        $Action_RemovePostAsContest = new Action_RemovePostAsContest;
-        $Action_RemovePostAsContest->enable();
+
     }
 
     public function enable(){
@@ -15,15 +14,16 @@ class Role_Admin{
            // die("11");
           //  $this->listenForStartContestSubmission();
             add_action('rest_api_init', array($this, 'doRegisterRouteStartContest'));
+
             $fetchPostTitle = new Action_FetchPostTitleFromIdEvenIfPostIsUnpublished;
-            $fetchPostTitle->enableApi();
+            $fetchPostTitle->enableVia(["api"]);
 
         }
 
     }
 
     public function designatePostAsContest($postID){
-            //update_post_meta( $postID, "developer-contest", "active");
+            update_post_meta( $postID, "developer-contest", "active");
         }
 
     public function doRegisterRouteStartContest(){
@@ -99,4 +99,5 @@ class Role_Admin{
             }
            return $output;
     }
+
 }

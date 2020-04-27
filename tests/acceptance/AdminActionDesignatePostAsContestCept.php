@@ -8,7 +8,7 @@ $I->wantTo('Confirm the admin action designate-post-as-contest');
  */
 $testPostTitle = "Test post for AdminActionDesignatePostAsConcestCept.php";
 $postID = wp_insert_post( ['post_title' => $testPostTitle] );
-
+//die("the post id is $postID");
 /**
  * WHEN
  */
@@ -22,10 +22,10 @@ $I->click("#developer-contest-postid-submit-button");
 /**
  * THEN
  */
-//$AdminActions = new \DeveloperContest\Role_Admin();
-//$AdminActions->designatePostAsContest($postID);
+$AdminActions = new \DeveloperContest\Role_Admin();
+$AdminActions->designatePostAsContest($postID);
 
-//$I->amOnPage("/wp-admin/admin.php?page=developer-contest");
+$I->amOnPage("/wp-admin/admin.php?page=developer-contest");
 $I->see($testPostTitle);
 //Cleanup
 wp_delete_post( $postID, TRUE);

@@ -1,0 +1,335 @@
+<html lang="en-US" class="js"><head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+		<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+<title>General Chicken – Behavior Driven Development in WordPress</title>
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link href="https://fonts.gstatic.com" crossorigin="" rel="preconnect">
+<link rel="alternate" type="application/rss+xml" title="General Chicken » Feed" href="https://generalchicken.guru/feed/">
+<link rel="alternate" type="application/rss+xml" title="General Chicken » Comments Feed" href="https://generalchicken.guru/comments/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/generalchicken.guru\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.3.2"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="https://generalchicken.guru/wp-includes/js/wp-emoji-release.min.js?ver=5.3.2" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="https://generalchicken.guru/wp-includes/css/dist/block-library/style.min.css?ver=5.3.2" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-theme-css" href="https://generalchicken.guru/wp-includes/css/dist/block-library/theme.min.css?ver=5.3.2" type="text/css" media="all">
+<link rel="stylesheet" id="wc-block-style-css" href="https://generalchicken.guru/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/style.css?ver=2.5.14" type="text/css" media="all">
+<link rel="stylesheet" id="woocommerce-layout-css" href="https://generalchicken.guru/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css?ver=4.0.1" type="text/css" media="all">
+<link rel="stylesheet" id="woocommerce-smallscreen-css" href="https://generalchicken.guru/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=4.0.1" type="text/css" media="only screen and (max-width: 768px)">
+<link rel="stylesheet" id="woocommerce-general-css" href="https://generalchicken.guru/wp-content/plugins/woocommerce/assets/css/woocommerce.css?ver=4.0.1" type="text/css" media="all">
+<style id="woocommerce-inline-inline-css" type="text/css">
+.woocommerce form .form-row .required { visibility: visible; }
+</style>
+<link rel="stylesheet" id="twentysixteen-fonts-css" href="https://fonts.googleapis.com/css?family=Merriweather%3A400%2C700%2C900%2C400italic%2C700italic%2C900italic%7CMontserrat%3A400%2C700%7CInconsolata%3A400&amp;subset=latin%2Clatin-ext" type="text/css" media="all">
+<link rel="stylesheet" id="genericons-css" href="https://generalchicken.guru/wp-content/themes/twentysixteen/genericons/genericons.css?ver=3.4.1" type="text/css" media="all">
+<link rel="stylesheet" id="twentysixteen-style-css" href="https://generalchicken.guru/wp-content/themes/twentysixteen/style.css?ver=5.3.2" type="text/css" media="all">
+<link rel="stylesheet" id="twentysixteen-block-style-css" href="https://generalchicken.guru/wp-content/themes/twentysixteen/css/blocks.css?ver=20181230" type="text/css" media="all">
+<!--[if lt IE 10]>
+<link rel='stylesheet' id='twentysixteen-ie-css'  href='https://generalchicken.guru/wp-content/themes/twentysixteen/css/ie.css?ver=20160816' type='text/css' media='all' />
+<![endif]-->
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentysixteen-ie8-css'  href='https://generalchicken.guru/wp-content/themes/twentysixteen/css/ie8.css?ver=20160816' type='text/css' media='all' />
+<![endif]-->
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='twentysixteen-ie7-css'  href='https://generalchicken.guru/wp-content/themes/twentysixteen/css/ie7.css?ver=20160816' type='text/css' media='all' />
+<![endif]-->
+<script type="text/javascript" src="https://generalchicken.guru/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp"></script>
+<script type="text/javascript" src="https://generalchicken.guru/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://generalchicken.guru/wp-content/themes/twentysixteen/js/html5.js?ver=3.7.3'></script>
+<![endif]-->
+<link rel="https://api.w.org/" href="https://generalchicken.guru/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://generalchicken.guru/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://generalchicken.guru/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.3.2">
+<meta name="generator" content="WooCommerce 4.0.1">
+<link rel="canonical" href="https://generalchicken.guru/">
+<link rel="shortlink" href="https://generalchicken.guru/">
+<link rel="alternate" type="application/json+oembed" href="https://generalchicken.guru/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgeneralchicken.guru%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://generalchicken.guru/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgeneralchicken.guru%2F&amp;format=xml">
+<!-- Analytics by WP-Statistics v12.6.12 - https://wp-statistics.com/ -->
+	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+			<style type="text/css" id="twentysixteen-header-css">
+		.site-branding {
+			margin: 0 auto 0 0;
+		}
+
+		.site-branding .site-title,
+		.site-description {
+			clip: rect(1px, 1px, 1px, 1px);
+			position: absolute;
+		}
+		</style>
+		<link rel="icon" href="https://generalchicken.guru/wp-content/uploads/cropped-redgreenrefacor-1-32x32.png" sizes="32x32">
+<link rel="icon" href="https://generalchicken.guru/wp-content/uploads/cropped-redgreenrefacor-1-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://generalchicken.guru/wp-content/uploads/cropped-redgreenrefacor-1-180x180.png">
+<meta name="msapplication-TileImage" content="https://generalchicken.guru/wp-content/uploads/cropped-redgreenrefacor-1-270x270.png">
+	<meta name="google-site-verification" content="omxr2yjsFt_V1FmuL2ik8T09UKtHZQDwCw738TyJDW8">
+</head>
+
+<body data-rsssl="1" class="home page-template-default page page-id-25321 wp-embed-responsive theme-twentysixteen woocommerce-js">
+<div id="page" class="site">
+	<div class="site-inner">
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+		<header id="masthead" class="site-header" role="banner">
+			<div class="site-header-main">
+				<div class="site-branding">
+					
+											<p class="site-title"><a href="https://generalchicken.guru/" rel="home">General Chicken</a></p>
+												<p class="site-description">Behavior Driven Development in WordPress</p>
+									</div><!-- .site-branding -->
+
+									<button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="site-navigation social-navigation">Menu</button>
+
+					<div id="site-header-menu" class="site-header-menu">
+													<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Menu" aria-expanded="false">
+								<div class="menu-maino-container"><ul id="menu-maino" class="primary-menu"><li id="menu-item-16170" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16170"><a href="https://generalchicken.guru/tuts/">Tutorials</a></li>
+<li id="menu-item-16536" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-16536"><a href="https://generalchicken.guru/tag/plugin/">Plugins</a></li>
+<li id="menu-item-24938" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24938"><a href="https://generalchicken.guru/blog/">Blog</a></li>
+<li id="menu-item-25366" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25366"><a href="https://generalchicken.guru/hire-john/">Hire John Dee – Plugin Developer</a></li>
+</ul></div>							</nav><!-- .main-navigation -->
+						
+											</div><!-- .site-header-menu -->
+							</div><!-- .site-header-main -->
+
+											<div class="header-image">
+					<a href="https://generalchicken.guru/" rel="home">
+						<img src="https://generalchicken.guru/wp-content/uploads/genchick_logo.png" srcset="https://generalchicken.guru/wp-content/uploads/genchick_logo-300x82.png 300w, https://generalchicken.guru/wp-content/uploads/genchick_logo-1024x280.png 1024w, https://generalchicken.guru/wp-content/uploads/genchick_logo-150x41.png 150w, https://generalchicken.guru/wp-content/uploads/genchick_logo-768x210.png 768w, https://generalchicken.guru/wp-content/uploads/genchick_logo.png 1033w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 81vw, (max-width: 1362px) 88vw, 1200px" width="1033" height="282" alt="General Chicken">
+					</a>
+				</div><!-- .header-image -->
+					</header><!-- .site-header -->
+
+		<div id="content" class="site-content">
+
+<div id="primary" class="content-area">
+	<main id="main" class="site-main" role="main">
+		
+<article id="post-25321" class="post-25321 page type-page status-publish hentry">
+	<header class="entry-header">
+		<h1 class="entry-title">BDD = 90% Cheaper SLDC</h1>	</header><!-- .entry-header -->
+
+	
+	<div class="entry-content">
+		<p><!--
+
+
+<style>
+.entry-title{display:none;}
+</style>
+
+
+--></p>
+<div style="min-width:100%;width:100%;clear:both;">&nbsp;</div>
+<hr>
+<p>Behavior Driven Development [BDD] is an advanced technique used to build software. By the time you reach the bottom of the page, you’ll understand the basics!</p>
+<h3>System Architecting</h3>
+<blockquote><p>Why did the chicken cross the road? To get to the other side!</p></blockquote>
+<p>When designing a system, BDD focuses on the behaviors of the various components, and the values those behaviors create. We work from the <em>outside in</em>, starting with broad strokes and then drilling down into the details. BDD is the best way for a <strong><em><a href="http://www.businessdictionary.com/definition/stakeholder.html" rel="noopener noreferrer" target="_blank">business stakeholder</a></em></strong>, to <em><strong>communicate ideas</strong></em> to the <em><strong>developer</strong></em>.<br>
+</p><figure id="attachment_25325" aria-describedby="caption-attachment-25325" style="width: 515px" class="wp-caption alignleft"><img src="https://generalchicken.guru/wp-content/uploads/chicken-graph.png" alt="" width="515" height="357" class="size-full wp-image-25325" srcset="https://generalchicken.guru/wp-content/uploads/chicken-graph.png 515w, https://generalchicken.guru/wp-content/uploads/chicken-graph-300x208.png 300w, https://generalchicken.guru/wp-content/uploads/chicken-graph-150x104.png 150w" sizes="(max-width: 515px) 85vw, 515px"><figcaption id="caption-attachment-25325" class="wp-caption-text">Chicken “Road Crossing” System</figcaption></figure><p></p>
+<div style="min-width:100%;width:100%;clear:both;">&nbsp;</div>
+<hr>
+<h3>System Actor</h3>
+<p>For each <a href="https://en.wikipedia.org/wiki/Software_feature" rel="noopener noreferrer" target="_blank">feature</a> of the system, the <a href="https://en.wikipedia.org/wiki/Actor_(UML)" rel="noopener noreferrer" target="_blank">primary actor</a> must be identified. <em>Who</em> or <em>what</em> is doing something?</p>
+<ul>
+<li>the user</li>
+<li>the system</li>
+<li>a customer</li>
+<li>the plugin</li>
+<li>a link</li>
+<li>a chicken</li>
+</ul>
+<figure id="attachment_25315" aria-describedby="caption-attachment-25315" style="width: 369px" class="wp-caption alignleft"><img src="https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-15-at-1.54.11-PM.png" alt="The Chicken" width="369" height="459" class="size-full wp-image-25315" srcset="https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-15-at-1.54.11-PM.png 369w, https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-15-at-1.54.11-PM-241x300.png 241w, https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-15-at-1.54.11-PM-121x150.png 121w" sizes="(max-width: 369px) 85vw, 369px"><figcaption id="caption-attachment-25315" class="wp-caption-text">The Chicken does something.</figcaption></figure>
+<div style="min-width:100%;width:100%;clear:both;">&nbsp;</div>
+<hr>
+<h3>The “Should” Sentence</h3>
+<p>We first create <a href="https://generalchicken.guru/the-feature/" rel="noopener noreferrer" target="_blank">a should sentence</a> that describes the behavior of the system actor.</p>
+<div class="highlightedSentance">The chicken SHOULD cross the road.</div>
+<div style="min-width:100%;width:100%;clear:both;">&nbsp;</div>
+<hr>
+<h3>The Reason Why</h3>
+<p>Explain the <a href="https://en.wikipedia.org/wiki/Business_value" rel="noopener noreferrer" target="_blank">business value</a> of the behavior.</p>
+<div class="highlightedSentance">So that it can get to the other side.</div>
+<div style="min-width:100%;width:100%;clear:both;">&nbsp;</div>
+<hr>
+<h3>The Failing Test</h3>
+<p>Once we know what SHOULD be happening – but isn’t yet – we can make a <strong><em>failing test</em></strong>. The failing test, indicates something that needs to happen, but isn’t happening now. It’s the thing that needs to be developed. If the test passes, that would prove the system works the way we <em>think it should</em>. By creating the failing test first, we indicate the thing that is missing in the world: the thing you and the developer are trying to <em>create</em>.</p>
+<div class="failingSentance"><strong>TEST:</strong> Is the chicken crossing the road?<br>
+No. The chicken is FAILING to cross the road at this time.</div>
+<p>Test examples:</p>
+<ul>
+<li>Is the ladder strong enough?</li>
+<li>Do we have enough inventory?</li>
+<li>Is there money left in the account?</li>
+<li>Can this feature handle this certain capacity?</li>
+</ul>
+<pre><code class="language-php hljs">
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">theChickenShouldCrossTheRoad</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">if</span> (made_it_to_the_other_side()){
+      then <span class="hljs-keyword">return</span> <span class="hljs-string">"PASS"</span>;
+    }<span class="hljs-keyword">else</span>{
+      then <span class="hljs-keyword">return</span> <span class="hljs-string">"FAIL"</span>;
+    }
+}
+</code></pre>
+<div style="min-width:100%;width:100%;clear:both;">&nbsp;</div>
+<hr>
+<h3>Automation</h3>
+<p>We use a machine to automate testing our feature. A failing test tells us that the feature isn’t ready yet. This is the <a href="https://github.com/lucatume/wp-browser" rel="noopener noreferrer" target="_blank">Codeception WordPress testing suite</a>. It launches a browser, and tests the behavior of the system like a human would. This is software, BEHAVING like a user [or a chicken].<br>
+</p><figure id="attachment_25373" aria-describedby="caption-attachment-25373" style="width: 1003px" class="wp-caption alignleft"><img src="https://generalchicken.guru/wp-content/uploads/failingTest.png" alt="A failing Codeception test" width="1003" height="775" class="size-full wp-image-25373" srcset="https://generalchicken.guru/wp-content/uploads/failingTest.png 1003w, https://generalchicken.guru/wp-content/uploads/failingTest-300x232.png 300w, https://generalchicken.guru/wp-content/uploads/failingTest-150x116.png 150w, https://generalchicken.guru/wp-content/uploads/failingTest-768x593.png 768w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px"><figcaption id="caption-attachment-25373" class="wp-caption-text">A failing Codeception test</figcaption></figure><p></p>
+<div style="min-width:100%;width:100%;clear:both;">&nbsp;</div>
+<hr>
+<h3>WordPress Plugin Development with Tests = 90% CHEAPER!!</h3>
+<p>Now the programmer knows the “definition of done”. He must make the test pass! This is the key to reducing SLDC costs in WordPress. There are MILLIONS of cheap WordPress developers. All you have to do, is be able to describe “the definition of done”. The RED_FAIL / GREEN_PASS aspect of automated tests transcend cultures and language. With BDD in WordPress, we can finally outsource software development to offshore developers – AND COMMUNICATE EFFECTIVELY WITH THEM! </p>
+<pre><code class="language-php hljs">
+$Chicken = <span class="hljs-keyword">new</span> Chicken;
+$Chicken-&gt;crossTheRoad();
+</code></pre>
+<div style="min-width:100%;width:100%;clear:both;">&nbsp;</div>
+<hr>
+<h3>Passing Test</h3>
+<p>Now that the code is written properly, the test passes. The developer and the business stakeholder know they are done with this feature.<br>
+</p><figure id="attachment_25359" aria-describedby="caption-attachment-25359" style="width: 1872px" class="wp-caption alignleft"><img src="https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-15-at-9.58.40-PM.png" alt="Codeception Test Suite" width="1872" height="642" class="size-full wp-image-25359" srcset="https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-15-at-9.58.40-PM.png 1872w, https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-15-at-9.58.40-PM-300x103.png 300w, https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-15-at-9.58.40-PM-1024x351.png 1024w, https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-15-at-9.58.40-PM-150x51.png 150w, https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-15-at-9.58.40-PM-768x263.png 768w, https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-15-at-9.58.40-PM-1536x527.png 1536w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px"><figcaption id="caption-attachment-25359" class="wp-caption-text">Codeception Test Suite</figcaption></figure><p></p>
+<div style="min-width:100%;width:100%;clear:both;">&nbsp;</div>
+<hr>
+<h3>Contact John</h3>
+<p>Let’s go! There is no charge for an initial consultation. I love talking about WordPress software. <a href="https://generalchicken.guru/hire-john/">Contact me</a>!<br>
+</p><figure id="attachment_25423" aria-describedby="caption-attachment-25423" style="width: 288px" class="wp-caption alignleft"><img src="https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-17-at-11.42.29-AM.png" alt="John Dee" width="288" height="194" class="size-full wp-image-25423" srcset="https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-17-at-11.42.29-AM.png 288w, https://generalchicken.guru/wp-content/uploads/Screen-Shot-2020-01-17-at-11.42.29-AM-150x101.png 150w" sizes="(max-width: 288px) 85vw, 288px"><figcaption id="caption-attachment-25423" class="wp-caption-text">John Dee</figcaption></figure><p></p>
+<style>
+.highlightedSentance{
+  font-family: Georgia;
+  line-height: 1.4;
+  font-weight: normal;
+  font-stretch: normal;
+  font-variant: small-caps;
+  font-size: 16px;
+  background: #4831d4;
+  color: #CCF381;
+  padding: 7px;
+}
+.failingSentance{
+  font-family: Georgia;
+  line-height: 1.4;
+  font-weight: normal;
+  font-stretch: normal;
+  font-variant: small-caps;
+  font-size: 16px;
+  background: red;
+  color: black;
+  padding: 7px;
+}
+</style>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/default.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script><br>
+<script>hljs.initHighlightingOnLoad();</script><p></p>
+	</div><!-- .entry-content -->
+
+	
+</article><!-- #post-25321 -->
+
+	</main><!-- .site-main -->
+
+	
+</div><!-- .content-area -->
+
+
+	<aside id="secondary" class="sidebar widget-area" role="complementary">
+		<section id="media_image-3" class="widget widget_media_image"><h2 class="widget-title">Yum! General Tso’s</h2><figure style="width: 300px" class="wp-caption alignnone"><a href="https://generalchicken.guru"><img width="300" height="200" src="https://generalchicken.guru/wp-content/uploads/general-tsos-chicken-recipe-300x200.jpg" class="image wp-image-25402  attachment-medium size-medium" alt="GeneralChicken.net" style="max-width: 100%; height: auto;" srcset="https://generalchicken.guru/wp-content/uploads/general-tsos-chicken-recipe-300x200.jpg 300w, https://generalchicken.guru/wp-content/uploads/general-tsos-chicken-recipe-1024x683.jpg 1024w, https://generalchicken.guru/wp-content/uploads/general-tsos-chicken-recipe-150x100.jpg 150w, https://generalchicken.guru/wp-content/uploads/general-tsos-chicken-recipe-768x512.jpg 768w, https://generalchicken.guru/wp-content/uploads/general-tsos-chicken-recipe-1536x1024.jpg 1536w, https://generalchicken.guru/wp-content/uploads/general-tsos-chicken-recipe-1200x800.jpg 1200w, https://generalchicken.guru/wp-content/uploads/general-tsos-chicken-recipe.jpg 1800w" sizes="(max-width: 300px) 85vw, 300px"></a><figcaption class="wp-caption-text">GeneralChicken.net</figcaption></figure></section><section id="search-2" class="widget widget_search">
+<form role="search" method="get" class="search-form" action="https://generalchicken.guru/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search …" value="" name="s">
+	</label>
+	<button type="submit" class="search-submit"><span class="screen-reader-text">Search</span></button>
+</form>
+</section>		<section id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">Recent Posts</h2>		<ul>
+											<li>
+					<a href="https://generalchicken.guru/how-can-we-manually-create-multilingual-wordpress-website-without-using-polylang-plugin-or-google-translator/">How can we manually create multilingual WordPress website without using Polylang plugin or Google Translator?</a>
+									</li>
+											<li>
+					<a href="https://generalchicken.guru/is-there-a-way-to-automatically-rollback-wordpress-versions-and-plugin-them-versions-if-they-break-the-site/">Is there a way to automatically rollback WordPress versions and plugin/them versions if they break the site?</a>
+									</li>
+											<li>
+					<a href="https://generalchicken.guru/how-do-i-speed-up-a-wordpress-website/">How do I speed up a WordPress website?</a>
+									</li>
+											<li>
+					<a href="https://generalchicken.guru/is-there-any-method-to-retrieve-previous-changes-made-in-wordpress/">Is there any method to retrieve previous changes made in WordPress?</a>
+									</li>
+											<li>
+					<a href="https://generalchicken.guru/what-are-some-good-naming-conventions-for-test-methods-in-tdd/">What are some good naming conventions for test methods in TDD?</a>
+									</li>
+					</ul>
+		</section>	</aside><!-- .sidebar .widget-area -->
+
+		</div><!-- .site-content -->
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+							<nav class="main-navigation" role="navigation" aria-label="Footer Primary Menu">
+					<div class="menu-maino-container"><ul id="menu-maino-1" class="primary-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16170"><a href="https://generalchicken.guru/tuts/">Tutorials</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-16536"><a href="https://generalchicken.guru/tag/plugin/">Plugins</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24938"><a href="https://generalchicken.guru/blog/">Blog</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25366"><a href="https://generalchicken.guru/hire-john/">Hire John Dee – Plugin Developer</a></li>
+</ul></div>				</nav><!-- .main-navigation -->
+			
+			
+			<div class="site-info">
+								<span class="site-title"><a href="https://generalchicken.guru/" rel="home">General Chicken</a></span>
+								<a href="https://wordpress.org/" class="imprint">
+					Proudly powered by WordPress				</a>
+			</div><!-- .site-info -->
+		</footer><!-- .site-footer -->
+	</div><!-- .site-inner -->
+</div><!-- .site -->
+
+	<script type="text/javascript">
+		var c = document.body.className;
+		c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+		document.body.className = c;
+	</script>
+	<script type="text/javascript" src="https://generalchicken.guru/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.70"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_view_cart":"View cart","cart_url":"https:\/\/generalchicken.guru\/cart\/","is_cart":"","cart_redirect_after_add":"yes"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://generalchicken.guru/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=4.0.1"></script>
+<script type="text/javascript" src="https://generalchicken.guru/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://generalchicken.guru/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=4.0.1"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_55cbfa234fe1153e6f9e5ac63a8ef699","fragment_name":"wc_fragments_55cbfa234fe1153e6f9e5ac63a8ef699","request_timeout":"5000"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://generalchicken.guru/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=4.0.1"></script>
+<script type="text/javascript" src="https://generalchicken.guru/wp-content/themes/twentysixteen/js/skip-link-focus-fix.js?ver=20160816"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var screenReaderText = {"expand":"expand child menu","collapse":"collapse child menu"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://generalchicken.guru/wp-content/themes/twentysixteen/js/functions.js?ver=20181230"></script>
+<script type="text/javascript" src="https://generalchicken.guru/wp-includes/js/wp-embed.min.js?ver=5.3.2"></script>
+
+
+</body></html>

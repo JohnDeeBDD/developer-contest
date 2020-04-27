@@ -1,7 +1,6 @@
 <?php
 
-class ContestTest extends \Codeception\TestCase\WPTestCase
-{
+class ContestTest extends \Codeception\TestCase\WPTestCase{
 
     /**
      * @test
@@ -51,13 +50,14 @@ class ContestTest extends \Codeception\TestCase\WPTestCase
             'post_status'   => 'publish',
         );
         $postID = wp_insert_post( $post);
-        $Admin = new \DeveloperContest\Role_Admin();
-        $Admin->designatePostAsContest($postID);
+
+        $Action = new \DeveloperContest\Action_DesignatePostAsContest;
+        $Action->doAction($postID);
 
 
         $Contest = new \DeveloperContest\Contest;
         $status = $Contest->getStatus($postID);
-        $this->assertEquals("active", $status, "Error: status $status returned.");
+        $this->assertEquals("active", $status, "Error: status '$status' returned.");
     }
 
 

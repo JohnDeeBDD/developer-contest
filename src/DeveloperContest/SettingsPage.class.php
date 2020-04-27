@@ -128,7 +128,10 @@ OUTPUT;
     public function renderDeveloperContestAdminSettingsPage(){
 
         $SiteAuth = new \DeveloperContest\SiteAuth();
-        if (!($SiteAuth->isRemoteSiteRegistered())) {
+
+//      if (!($SiteAuth->isRemoteSiteRegistered())){
+        //Currently skiiping auth
+        if (2==3) {
             echo($SiteAuth->returnUiHtml());
         }else{
             require("SettingsPage.php");

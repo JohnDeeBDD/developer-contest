@@ -3,33 +3,20 @@
 namespace DeveloperContest;
 
 class Action_DesignatePostAsContest extends Action_Abstract{
-    public $namespace;
-    public $roles = ["administrator"];
+    public $namespace = "developer-contest";
     public $actionName = "designate-post-as-contest";
-    public $availableLocations = ["developer-contest"];
 
-
-    public function __construct(){
-        parent::__construct();
-    }
-
-    //who can do this action
-    public function setRoles($roles = []){
-
-    }
-
-    //where can this action occur
-    public function setScreens($screens = []){}
-
-    public function enableApi(){}
     public function listenForHtmlSubmission(){
+        //die("listenForHtmlSubmission Action_DesignatePostAsContest");
         if(isset($_REQUEST['action'])){
             if($_REQUEST['action'] == ($this->namespace . "-" . $this->actionName)){
-                //die("listenForStartContestSubmission action set");
+                //die("Action_DesignatePostAsContest 14");
                 if (isset($_REQUEST['contestPostID'])){
                     $postID = $_REQUEST['contestPostID'];
-                    if(!($this->validateFormSubmission($postID))){
-                        wp_die("SOMETHING IS WRONG! PostID did not validate. Designate Post as Contest");
+                    //die("post $postID");
+                    if(!($this->validateSubmission($postID))){
+                        $className = get_class($this);
+                        wp_die("SOMETHING IS WRONG! PostID did not validate. $className line 33");
                     };
                     if(!(isset($_REQUEST['developer-contest-designate-post-as-contest-nonce']))){
                         wp_die("SOMETHING IS WRONG! NONCE NOT FOUND.");
@@ -45,10 +32,10 @@ class Action_DesignatePostAsContest extends Action_Abstract{
             }
         }
     }
-    private function verifyNonce(){}
+    public function verifyNonce($nonce = null){}
     private function verifyUser(){}
 
-    public function validateFormSubmission($postID){
+    public function validateSubmission($postID){
         if(is_int(intval($postID))){
             if ( get_post_status ( $postID) ) {
                 return TRUE;
