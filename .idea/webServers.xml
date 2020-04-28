@@ -2,12 +2,11 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="dfd3d902-0aea-4155-891f-87630d984b56" name="google" url="http://35.193.111.224">
-        <fileTransfer host="35.193.111.224" port="22" accessType="SFTP">
+      <webServer id="74e7fe8c-acd6-40e0-b410-665ccae3ed7d" name="aws">
+        <fileTransfer rootFolder="/var/www/html/wp-content/plugins/developer-contest" accessType="SFTP" host="18.217.207.213" port="22" sshConfigId="314a1d1c-5e55-49b3-b75a-c4172676c34d" sshConfig="jim@18.217.207.213:22 password">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
-          <option name="port" value="22" />
         </fileTransfer>
       </webServer>
     </option>

@@ -10,6 +10,7 @@
  */
 
 namespace DeveloperContest;
+
 //die("developer-contest plugin");
 require_once (plugin_dir_path(__FILE__). 'src/DeveloperContest/autoloader.php');
 require_once (plugin_dir_path(__FILE__). 'src/GeneralChickenAuth/autoloader.php');
